@@ -26,17 +26,20 @@ s.headers.update(headers)
 
 
 def showtop():
-    r = requests.get(t_url)
+    #r = requests.get(t_url)
+    r = s.get(t_url)
     soup =  BeautifulSoup(r.content, "lxml")
     fulltable =  soup.find("table",{"id" : "torrent_table"})
     ttg_torrents = []
     for row in fulltable.find_all("tr",class_=["hover_hr  sticky","hover_hr"],recursive=False):
         id = row["id"]
         size = row.find_all("td",{"align":"center"})[3].text
-        torrent_fix = str(row.find("td",{"align":"left"}).find("div").a.b).split('<br/>')   #.find("br").next_sibling
-        title = re.sub(r'</?\w+[^>]*>','',torrent_fix[0])
+        #torrent_fix = str(row.find("td",{"align":"left"}).find("div").a.b).split('<br/>')   #.find("br").next_sibling
+        #title = re.sub(r'</?\w+[^>]*>','',torrent_fix[0])
+        torrent_fix = str(row.find("td",{"align":"left"}).find("div").a.b)
+        title = re.split('<|>',torrent_fix)[2] #原盘DIY制作者@字符使用了邮件保护js，直接舍弃处理
         try:
-            name = re.sub(r'</?\w+[^>]*>','',torrent_fix[1]).strip()
+            name = re.sub(r'</?\w+[^>]*>','',torrent_fix.split('<br/>')[1]).strip()
         except:
             name = ''
     
