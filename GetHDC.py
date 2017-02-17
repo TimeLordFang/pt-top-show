@@ -3,6 +3,8 @@
 from bs4 import BeautifulSoup
 import re
 import requests
+import time
+import sqlite3
 
 
 headers = {
@@ -23,20 +25,20 @@ f.close()
 
 s = requests.Session()
 s.headers.update(headers)
-#print s.headers
 
+conn = sqlite3.connect('test.db')
+conn.text_factory = str
 
 def showtop():
-    r = requests.get(t_url)
+    r = s.get(t_url)
     soup =  BeautifulSoup(r.content, "lxml")
-    #print r.content
     fulltable = soup.find("table",{"class" : "torrent_list"})
     hdc_torrents = []
     for row in fulltable.find_all("tr",class_=["stickz_bg","sticky_bg"],recursive=False):
         torrent_fix = row.find("td",{"class":"t_name"}).find("tr").find_all("td")[1]
         torrent_misc = torrent_fix.h3.a
         title = torrent_misc['title']
-        id = re.search(r'\d+(?=&)',torrent_misc['href']).group()
+        site_id = re.search(r'\d+(?=&)',torrent_misc['href']).group()
         try:
             name = torrent_fix.h4.text
         except:
