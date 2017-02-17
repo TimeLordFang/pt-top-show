@@ -52,6 +52,6 @@ def showtop():
         cur.execute("INSERT INTO PTTOP (SITE,TITLE,NAME,SITE_ID,SIZE,T_LINK,D_LINK,UPLTIME ) VALUES (?,?,?,?,?,?,?,?) " ,  (site,title,name,site_id,size,t_link,d_link,upltime))
         conn.commit()
 
-conn.close()
 if __name__ == '__main__':
     showtop()
+    conn.close()
