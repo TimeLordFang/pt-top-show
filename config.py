@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 
-ttg_url = ''
-mt_url = ''
-hdc_url = ''
-chd_url = ''
+ttg_url = 'https://totheglory.im/'
+mt_url = 'https://tp.m-team.cc/'
+hdc_url = 'https://hdchina.club/'
+chd_url = 'https://chdbits.co/'
 
-ttg_cookie = ''
+ttg_passkey = 'test'
+mt_passkey = 'test'
+hdc_passkey = 'test'
+chd_passkey = 'test'
+
+
 mt_cookie = ''
+ttg_cookie = ''
 hdc_cookie = ''
-chd_cookie = ''
-
-
-ttg_passkey = ''
-mt_passkey = ''
-hdc_passkey = ''
 chd_cookie = ''
 
 comm_headers = {
@@ -26,7 +26,11 @@ comm_headers = {
     'Connection':'keep-alive'
     }
 
-ttg_headers = comm_headers.update({'Referer':ttg_url,'Cookie':ttg_cookie})
-mt_headers = comm_headers.update({'Referer':mt_url,'Cookie':mt_cookie})
-hdc_headers = comm_headers.update({'Referer':hdc_url,'Cookie':hdc_cookie,'authority':'hdchina.club'})
-chd_headers = comm_headers.update({'Referer':chd_url,'Cookie':chd_cookie,'authority':'chdbits.co'})
+ttg_headers = comm_headers.copy()
+ttg_headers.update({'Referer':ttg_url,'Cookie':ttg_cookie})
+mt_headers = comm_headers.copy()
+mt_headers.update({'Referer':mt_url,'Cookie':mt_cookie})
+hdc_headers = comm_headers.copy()
+hdc_headers.update({'Referer':hdc_url,'Cookie':hdc_cookie,'authority':'hdchina.club'})
+chd_headers = comm_headers.copy()
+chd_headers.update({'Referer':chd_url,'Cookie':chd_cookie,'authority':'chdbits.co'})
