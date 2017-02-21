@@ -35,8 +35,8 @@ def showtop():
         except:
             name = ''
 
-        t_link = url + site_id + "/"
-        d_link = url + site_id + passkey
+        t_link = url + "t/" + site_id + "/"
+        d_link = url + "dl/" + site_id + "/" + passkey
         cur.execute("INSERT INTO PTTOP (SITE,TITLE,NAME,SITE_ID,SIZE,T_LINK,D_LINK,UPLTIME ) VALUES (?,?,?,?,?,?,?,?) " ,  (site,title,name,site_id,size,t_link,d_link,upltime))
         conn.commit()
     conn.close()
