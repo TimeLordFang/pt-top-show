@@ -1,0 +1,28 @@
+<!doctype html>
+<title>Hello from Flask</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')  }}">
+<h1>Hello tester!</h1>
+<table class="alltorrent">
+    <tr>
+        <th>种子</th>
+        <th>大小</th>
+        <th>时间</th>
+        <th>下载</th>
+    </tr>
+    {%for i in x_list%}
+    <tr>
+        <td>
+            <a href= {{i[6]}} >
+                <b>
+                {{i[2]}}
+                <br>
+                <span style="font-weight:normal;border">{{i[3]}}</span>
+                <br>
+                </b>
+        </td>
+        <td>{{i[5]}}</td>
+        <td>{{i[8]}}</td>
+        <td>download  button</td>
+    </tr>
+    {%endfor%}
+</table>

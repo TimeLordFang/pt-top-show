@@ -26,7 +26,9 @@ def showtop():
     for row in fulltable.find_all("tr",class_=["hover_hr  sticky","hover_hr"],recursive=False):
         site_id = row["id"]
         up_time = row.find_all("td",{"align":"center"})[1].text
-        upltime = int(time.mktime(time.strptime(up_time,"%Y-%m-%d%H:%M:%S")))
+        #upl_time = int(time.mktime(time.strptime(up_time,"%Y-%m-%d%H:%M:%S")))
+        upltime = time.strftime("%Y-%m-%d %H:%M:%S", (time.strptime(up_time,"%Y-%m-%d%H:%M:%S")))
+        time.strftime("%Y-%m-%d %H:%M:%S",)
         size = row.find_all("td",{"align":"center"})[3].text
         torrent_fix = str(row.find("td",{"align":"left"}).find("div").a.b)
         #title = re.split('<|>',torrent_fix)[2] #原盘DIY制作者@字符使用了邮件保护js，直接舍弃处理
