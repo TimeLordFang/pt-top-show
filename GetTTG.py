@@ -29,7 +29,9 @@ def showtop():
         upltime = int(time.mktime(time.strptime(up_time,"%Y-%m-%d%H:%M:%S")))
         size = row.find_all("td",{"align":"center"})[3].text
         torrent_fix = str(row.find("td",{"align":"left"}).find("div").a.b)
-        title = re.split('<|>',torrent_fix)[2] #原盘DIY制作者@字符使用了邮件保护js，直接舍弃处理
+        #title = re.split('<|>',torrent_fix)[2] #原盘DIY制作者@字符使用了邮件保护js，直接舍弃处理
+        title_x = re.sub(r'</?\w+[^>]*>','',torrent_fix.split('<br/>')[0]).strip()
+        title = re.split(r"\[",title_x)[0]
         try:
             name = re.sub(r'</?\w+[^>]*>','',torrent_fix.split('<br/>')[1]).strip()
         except:
